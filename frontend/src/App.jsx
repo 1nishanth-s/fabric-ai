@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
-import textileImage from '../../test_image/cotton_test.jpg'
+import textileImage from './assets/hero.png'
 import './App.css'
+
+const API_BASE_URL = (import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000').replace(/\/$/, '')
 
 function App() {
   const [selectedFile, setSelectedFile] = useState(null)
@@ -64,7 +66,7 @@ function App() {
     formData.append('file', selectedFile)
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/predict', {
+      const response = await fetch(`${API_BASE_URL}/predict`, {
         method: 'POST',
         body: formData,
       })
